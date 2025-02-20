@@ -8,9 +8,6 @@ class HelloRestaurant(APIView):
         return Response({"message": "Welcome to the Viktor API!"})
 
 
-
 @api_view(http_method_names=['GET'])
 def get():
-
-
-
+    pass
