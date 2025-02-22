@@ -21,7 +21,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('restaurant.urls')),  # Add this line for your app
+    path('api/', include('restaurant.urls')),  # Add this line for your app
+    path('api/', include('merch.urls')),  # Add this line for your app
 ]
 
 
