@@ -19,7 +19,7 @@ function Eshop() {
 
     return (
         <div className="fav-movies">
-            <h3 className="mb-4 heading-text font-bold">❤️ Your Favorite Movies</h3>
+            <h3 className="mb-4 heading-text font-bold">❤️ Е-продавница </h3>
             {shopComponents.map(movie => <EshopCard movie={movie} key={movie.id}/>)}
         </div>
     )

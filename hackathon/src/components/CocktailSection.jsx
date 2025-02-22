@@ -19,7 +19,7 @@ function CocktailSection() {
 
     return (
         <div className="newest-movies ">
-            <h3 className="mb-3 heading-text font-bold">🔥 Newest Movies</h3>
+            <h3 className="mb-3 heading-text font-bold">🔥 Последно порачани коктели </h3>
             {coctails.map(movie => <CoctailCard movie={movie} key={movie.id}/>)}
         </div>
     )
