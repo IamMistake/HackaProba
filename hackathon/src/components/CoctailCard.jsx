@@ -1,4 +1,4 @@
-function Card({movie}) {
+function CoctailCard({movie}) {
     return (
         <div className="newest-movie-card relative mb-4">
             <img className="w-full h-auto rounded-[20px]" src={movie.url} alt={movie.title}/>
@@ -24,4 +24,4 @@ function Card({movie}) {
     )
 }
 
-export default Card
+export default CoctailCard

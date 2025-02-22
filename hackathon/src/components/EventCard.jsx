@@ -1,4 +1,4 @@
-function TrendingMovieCard({movie}) {
+function EventCard({movie}) {
     return (
         <div className="relative h-[100%] overflow-hidden rounded-[20px]">
             <div className="w-full h-full relative">
@@ -13,4 +13,4 @@ function TrendingMovieCard({movie}) {
     )
 }
 
-export default TrendingMovieCard
+export default EventCard

@@ -1,4 +1,4 @@
-function FavCardMovie({movie}) {
+function EshopCard({movie}) {
     return (
         <div className="newest-movie-card mb-4 flex items-center gap-4 p-4 bg-gray-600 rounded-[10px]">
             <img
@@ -27,4 +27,4 @@ function FavCardMovie({movie}) {
     )
 }
 
-export default FavCardMovie
+export default EshopCard
