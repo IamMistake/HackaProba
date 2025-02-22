@@ -1,9 +1,9 @@
-import TrendingMovieCard from "./TrendingMovieCard.jsx";
-import {useState} from "react";
-import Card from "./Card.jsx";
+import EventCard from "./EventCard.jsx";
+import {useState, useEffect} from "react";
+import CoctailCard from "./CoctailCard.jsx";
 
-function TrendingMovie() {
-    const movies = [
+function EventSection() {
+    const [events, setEvents] = useState([
         {
             id: 4,
             title: "Dark",
@@ -39,14 +39,21 @@ function TrendingMovie() {
             url: "https://wallpaperaccess.com/full/8652624.jpg",
             length: "3h 30mins"
         },
-    ]
+    ]);
+
+    // useEffect(() => {
+    //     fetch("http://localhost:8000/api/startup/")
+    //         .then(response => response.json())
+    //         .then(data => setEvents(data.message))
+    //         .catch(error => console.error("Error fetching bot response:", error));
+    // }, []);
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const nextMovie = () => {
-        console.log(currentIndex)
+        // console.log(currentIndex)
         setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
-        console.log(currentIndex)
+        // console.log(currentIndex)
     };
 
     const prevMovie = () => {
@@ -55,12 +62,12 @@ function TrendingMovie() {
 
     return (
         <div className="trending-movies relative">
-            <TrendingMovieCard movie={movies[currentIndex]}/>
+            <EventCard movie={events[currentIndex]}/>
 
             {/* Text Overlay */}
             <div className="sticky w-[60%] bottom-15 left-0 right-0 p-6 text-white z-10">
-                <h2 className="text-2xl font-bold">{movies[currentIndex].title}</h2>
-                <p className="text-gray-200 mt-2">{movies[currentIndex].desc}</p>
+                <h2 className="text-2xl font-bold">{events[currentIndex].title}</h2>
+                <p className="text-gray-200 mt-2">{events[currentIndex].desc}</p>
             </div>
 
             {/* Bottom Left Buttons (Play and Download) */}
@@ -101,4 +108,4 @@ function TrendingMovie() {
     )
 }
 
-export default TrendingMovie
+export default EventSection
