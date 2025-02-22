@@ -13,7 +13,7 @@ function StartupCard({data}) {
       </div>
 
       {/* Text Content */}
-      <div className="w-[80%] h-[20%] p-4 flex flex-col justify-between rounded-b-[20px]">
+      <div className="w-[80%] h-[20%] pl-3 pr-6 flex flex-col justify-between rounded-b-[20px]">
         {/* Title */}
         <h3 className="text-lg font-bold text-gray-900">{data.startupName}</h3>
         {/* Description */}

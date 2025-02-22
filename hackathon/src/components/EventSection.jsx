@@ -1,73 +1,48 @@
 import EventCard from "./EventCard.jsx";
 import {useState, useEffect} from "react";
-import CoctailCard from "./CoctailCard.jsx";
 
 function EventSection() {
-    const [events, setEvents] = useState([
-        {
-            id: 4,
-            title: "Dark",
-            desc: "Dark e nestoo",
-            url: "https://images.unsplash.com/photo-1595495529106-adb18dfe16a8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            length: "2h 30mins"
-        },
-        {
-            id: 3,
-            title: "The 100",
-            desc: "The 100 e survival film",
-            url: "https://ntvb.tmsimg.com/assets/p18078200_b_h8_ae.jpg?w=1280&h=720",
-            length: "4h"
-        },
-        {
-            id: 1,
-            title: "Vikings",
-            desc: "Vikinzi imaat jaki zeni",
-            url: "https://plus.unsplash.com/premium_photo-1698238183673-66642d292c03?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            length: "3h"
-        },
-        {
-            id: 2,
-            title: "La casa de papel",
-            desc: "nestoo pojce mnogu lele auf boom u get 5 booms",
-            url: "https://images.unsplash.com/photo-1622126812734-35a1d6c46f22?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            length: "3 hours and 20 mins"
-        },
-        {
-            id: 5,
-            title: "Spider-Man: Across the Spider-Verse",
-            desc: "Spider-Man: Across the Spider-Verse is a 2023 American animated superhero film featuring the Marvel Comics character Miles Morales / Spider-Man, produced by Columbia Pictures and Sony Pictures Animation in association with Marvel Entertainment",
-            url: "https://wallpaperaccess.com/full/8652624.jpg",
-            length: "3h 30mins"
-        },
-    ]);
+    const [events, setEvents] = useState([{
+        "id": 1,
+        "eventName": "Event1",
+        "type": "regular",
+        "mentor": "Andrea Kulakov",
+        "description": "predavanje za mrza",
+        "date": "2025-02-25"
+    }]);
 
-    // useEffect(() => {
-    //     fetch("http://localhost:8000/api/startup/")
-    //         .then(response => response.json())
-    //         .then(data => setEvents(data.message))
-    //         .catch(error => console.error("Error fetching bot response:", error));
-    // }, []);
+    useEffect(() => {
+        fetch("http://localhost:8000/imamideja/api/events/")
+            .then(response => response.json())
+            .then(data => {
+                setEvents(data)
+            })
+            .catch(error => console.error("Error fetching bot response:", error));
+    }, []);
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const nextMovie = () => {
         // console.log(currentIndex)
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
         // console.log(currentIndex)
     };
 
     const prevMovie = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + movies.length) % movies.length);
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + events.length) % events.length);
     };
 
     return (
         <div className="trending-movies relative">
-            <EventCard movie={events[currentIndex]}/>
+            <EventCard eventce={events[currentIndex]}/>
 
             {/* Text Overlay */}
             <div className="sticky w-[60%] bottom-15 left-0 right-0 p-6 text-white z-10">
-                <h2 className="text-2xl font-bold">{events[currentIndex].title}</h2>
-                <p className="text-gray-200 mt-2">{events[currentIndex].desc}</p>
+                <h2 className="text-2xl font-bold">{events[currentIndex].eventName}</h2>
+                {events[currentIndex].mentor !== null && events[currentIndex].mentor !== "" && (
+                    <p className="text-gray-200 mt-2">Ментор: {events[currentIndex].mentor}</p>
+                )}
+                <p className="text-gray-200 mt-2">{events[currentIndex].description}</p>
             </div>
 
             {/* Bottom Left Buttons (Play and Download) */}
