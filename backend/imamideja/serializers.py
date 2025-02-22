@@ -3,7 +3,7 @@ from .models import StartupIdea, Event, User
 
 class StartupIdeaSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    image = serializers.URLField(required=False, allow_null=True)
+    image = serializers.URLField(required=False, allow_null=True)  # Add this line
 
     class Meta:
         model = StartupIdea
@@ -12,10 +12,10 @@ class StartupIdeaSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         instance = StartupIdea.objects.create(**validated_data)
-        # Automatically add the creator as a participant.
+        # Automatically add the creator as a participant
         instance.participants.add(validated_data['creator'])
         return instance
-
+    
 class EventSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     eventName = serializers.CharField(source='name')

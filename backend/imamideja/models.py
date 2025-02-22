@@ -15,7 +15,7 @@ class StartupIdea(models.Model):
     description = models.TextField()
     participants = models.ManyToManyField(User, related_name='startup_ideas')
     firstMeet = models.DateField()
-    image = models.URLField(blank=True, null=True)  # New field for image URL
+    image = models.URLField(blank=True, null=True)  # <-- Add this line
 
     def __str__(self):
         return self.startupName
