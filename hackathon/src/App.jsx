@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ImamIdeja from "./pages/ImamIdeja.jsx";
 import EventRegister from "./pages/EventRegister.jsx";
 import StartupRegister from "./pages/StartupRegister.jsx";
+import MakeAProduct from './components/MakeAProduct.jsx';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/ImamIdeja" element={<ImamIdeja/>}> </Route>
                     <Route path="/create-event" element={<EventRegister onSubmit={(data) => console.log("Event Created:", data)} />} />
                     <Route path="/create-startup" element={<StartupRegister onSubmit={(data) => console.log("Event Created:", data)} />} />
+                    <Route path="/MakeAProduct" element={<MakeAProduct />}> </Route>
                 </Routes>
             </div>
         </Router>
