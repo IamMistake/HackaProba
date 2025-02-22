@@ -1,0 +1,91 @@
+[
+  {
+    "personality": [
+      "this",
+      "that"
+    ],
+    "feelings": [
+      "this, that"
+    ],
+    "taste": "this",
+    "ingredients": {
+      "alcohol": [
+        "this",
+        "that"
+      ],
+      "juice": "this",
+      "misc": [
+        "this",
+        "that"
+      ]
+    }
+  },
+  [
+    {
+      "id": 1,
+      "drinkName": "this",
+      "type": "this",
+      "ingredients": [
+        {
+          "name": "this",
+          "quantity": 10,
+          "metric": "this"
+        }
+      ],
+      "price": 10,
+      "instructions": "long this"
+    }
+  ],
+  [
+    {
+      "id": 1,
+      "productName": "this",
+      "type": "maicka/casa",
+      "size": "null / str",
+      "price": 10,
+      "color": "this"
+    }
+  ],
+  {
+    "prompt": "this",
+    "source": "ai/user"
+  },
+  [
+    {
+      "punchLine": "this",
+      "image": "image string vo 64base",
+      "price": 12,
+      "type": "casa / duks"
+    }
+  ],
+  {
+    "startupName": "",
+    "creator": 1,
+    "description": "this",
+    "participants": [1,2,3],
+    "firstMeet": "date"
+  },
+
+  {
+    "startupName": "this",
+    "description": "this",
+    "firstMeet" : "date",
+    "creator": 1
+  },
+
+  {
+    "eventName": "this",
+    "type" : "weekly / regular",
+    "mentor": "null / name",
+    "description" : "this",
+    "date": "date"
+  },
+
+  {
+    "eventName": "this",
+    "type" : "weekly / regular",
+    "mentor": "null / name",
+    "description" : "this",
+    "date": "date"
+  }
+]
