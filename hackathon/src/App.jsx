@@ -1,7 +1,7 @@
 import './App.css'
 import NavBar from "./components/NavBar.jsx";
 import Home from "./pages/Home.jsx";
-import WebShop from './components/WebShop.jsx';
+import WebShop from './pages/WebShop.jsx';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ImamIdeja from "./pages/ImamIdeja.jsx";
 import EventRegister from "./pages/EventRegister.jsx";
