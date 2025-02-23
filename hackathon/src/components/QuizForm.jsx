@@ -4,13 +4,15 @@ import Question from './Question';
 
 const QuizForm = ({ onSubmit }) => {
   const [answers, setAnswers] = useState({
-    personality: [],
-    feelings: [],
-    taste: [],
-    alcohol: [],
-    juice: [],
-    misc: []
+    personality: ["Одговор 1"],  // First option selected by default
+    feelings: ["Одговор 1"],
+    taste: ["Одговор 1"],
+    alcohol: ["Одговор 1"],
+    juice: ["Одговор 1"],
+    misc: ["Одговор 1"]
   });
+
+  
 
   const questionsData = [
     {
@@ -70,33 +72,13 @@ const QuizForm = ({ onSubmit }) => {
     });
   };
 
+  // mozebi brisi
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-    try {
-      // Send the POST request
-      const response = await fetch('http://localhost:8000/aibartender/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(answers),
-      });
-  
-      // Handle the response
-      if (response.ok) {
-        const data = await response.json();
-        console.log('Response from server:', data);
-        // setRecommendedDrinks(data) // THIS IS SETTING THE DRINKS
-      } else {
-        console.error('Failed to send request:', response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error('Error occurred while sending request:', error);
-    }
+    onSubmit(answers)
   };
   
-
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md">

@@ -34,7 +34,7 @@ const SidebarDrinks = () => {
       ])
 
       useEffect(() => {
-        fetch("http://localhost:8000/aibartender/drinks/")
+        fetch("http://localhost:8000/api/aibartender/drinks")
             .then(response => response.json())
             .then(data => {
                 setMockDrinks(data)
