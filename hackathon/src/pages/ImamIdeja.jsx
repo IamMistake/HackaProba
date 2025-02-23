@@ -46,7 +46,7 @@ export default function ImamIdeja() {
             <div onClick={() => navigate(`/EventInfo/${weeklyEvent.id}`)}
                 className="w-4/5 ml-[10%] mt-4 mb-8 rounded-lg bg-white text-black p-6 shadow-xl shadow-orange-950 flex flex-col items-center space-y-4">
                 <img
-                    className="w-full h-[400px] object-cover rounded-lg shadow-md"
+                    className="w-full h-[200px] object-cover rounded-lg shadow-md"
                     src={weeklyEvent.image}
                     alt="Event"
                 />
@@ -62,7 +62,7 @@ export default function ImamIdeja() {
 
             <div className="grid grid-cols-2 gap-4 p-4">
                 <div className="border-r border-gray-300 pr-4">
-                    <h2 className="text-xl font-bold mb-4">Настани</h2>
+                    <h2 className="text-xl text-white font-bold mb-4">Настани</h2>
                     <Link to="/create-event">
                         <button
                             className="mb-3 bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 transition">
@@ -71,7 +71,7 @@ export default function ImamIdeja() {
                     </Link>
                     {events.map(event => (
                         <div onClick={() => navigate(`/EventInfo/${event.id}`)} key={event.id}
-                             className="border p-4 mb-7 rounded-lg shadow-md shadow-orange-950 hover:shadow-lg cursor-pointer">
+                             className=" border p-4 mb-7 bg-white/70 rounded-lg shadow-md shadow-orange-950 hover:shadow-lg cursor-pointer">
                             <img src={event.image} alt={event.eventName}
                                  className="w-full h-32 object-cover rounded-md mb-2"/>
                             <h3 className="text-lg font-semibold">{event.eventName}</h3>
@@ -83,7 +83,7 @@ export default function ImamIdeja() {
                 </div>
 
                 <div className="pl-4">
-                    <h2 className="text-xl font-bold mb-4">Старт-апп</h2>
+                    <h2 className="text-xl text-white font-bold mb-4">Старт-апп</h2>
                     <Link to="/create-startup">
                         <button
                             className="mb-3 bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-orange-600 transition">
@@ -92,7 +92,7 @@ export default function ImamIdeja() {
                     </Link>
                     {startups.map(startup => (
                         <div onClick={() => navigate(`/StartupIdea/${startup.id}`)} key={startup.id}
-                             className="border p-4 mb-7 rounded-lg shadow-md shadow-orange-950 hover:shadow-lg cursor-pointer">
+                             className="border p-4 mb-7 bg-white/70 rounded-lg shadow-md shadow-orange-950 hover:shadow-lg cursor-pointer">
                             <img src={startup.image} alt={startup.startupName}
                                  className="w-full h-32 object-cover rounded-md mb-2"/>
                             <h3 className="text-lg font-semibold">{startup.startupName}</h3>
