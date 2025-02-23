@@ -27,6 +27,8 @@
       "type": "this",
       "ingredients": [
         {
+          "id": 1,
+          "type": "this",
           "name": "this",
           "quantity": 10,
           "metric": "this"
@@ -78,7 +80,7 @@
     "type" : "weekly / regular",
     "mentor": "null / name",
     "description" : "this",
-    "date": "date"
+    "date": "date" 
   },
 
   {
