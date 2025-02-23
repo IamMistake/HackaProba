@@ -15,6 +15,6 @@ class Product(models.Model):
         return self.productName
 
 
-class AIProduct:
+class AIProduct(models.Model):
     punchLine = models.CharField(max_length=200)
     imageUrl = models.CharField(max_length=500)

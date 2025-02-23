@@ -59,3 +59,57 @@ def get_all_ai_drinks(request):
     all_ai_drinks = AIDrink.objects.all()
     serializer = AIDrinkSerializer(all_ai_drinks, many=True)
     return Response(serializer.data)
+
+
+@api_view(http_method_names=["GET"])
+def populate(request):
+    data = {
+        "drinks": [
+            {
+                "drinkName": "Fiery Sunrise",
+                "type": "Cocktail",
+                "ingredients": [
+                    {"name": "Tequila", "quantity": 50, "metric": "ml"},
+                    {"name": "Orange Juice", "quantity": 100, "metric": "ml"},
+                    {"name": "Lime Juice", "quantity": 15, "metric": "ml"},
+                    {"name": "Chili Powder", "quantity": 1, "metric": "pinch"}
+                ],
+                "price": 12,
+                "instructions": "In a shaker, combine tequila, orange juice, lime juice, and a pinch of chili powder. Fill with ice and shake vigorously. Strain into a glass filled with ice. Garnish with a lime wheel."
+            },
+            {
+                "drinkName": "Spicy Mint Mojito",
+                "type": "Cocktail",
+                "ingredients": [
+                    {"name": "Rum", "quantity": 50, "metric": "ml"},
+                    {"name": "Lime Juice", "quantity": 25, "metric": "ml"},
+                    {"name": "Orange Juice", "quantity": 30, "metric": "ml"},
+                    {"name": "Mint Leaves", "quantity": 10, "metric": "leaves"},
+                    {"name": "Chili Powder", "quantity": 1, "metric": "pinch"},
+                    {"name": "Soda Water", "quantity": 100, "metric": "ml"}
+                ],
+                "price": 11,
+                "instructions": "Muddle mint leaves in a glass with lime juice and chili powder. Add rum and orange juice. Fill the glass with ice and top it off with soda water. Stir gently and garnish with a mint sprig."
+            }
+        ]
+    }
+
+    for drink_data in data["drinks"]:
+        created = AIDrink.objects.create(
+            drinkName=drink_data["drinkName"],
+            defaults={
+                "type": drink_data["type"],
+                "price": drink_data["price"],
+                "instructions": drink_data["instructions"]
+            }
+        )
+
+        for ingredient_data in drink_data["ingredients"]:
+            Ingredient.objects.create(
+                name=ingredient_data["name"],
+                quantity=ingredient_data["quantity"],
+                metric=ingredient_data["metric"],
+                drink=created
+            )
+
+    return Response(data)
