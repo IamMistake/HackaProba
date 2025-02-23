@@ -1,8 +1,10 @@
 import './App.css'
 import NavBar from "./components/NavBar.jsx";
 import Home from "./pages/Home.jsx";
+import WebShop from './components/WebShop.jsx';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import BarPage from './pages/BarPage.jsx'
 import WebShop from './pages/WebShop.jsx';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import ImamIdeja from "./pages/ImamIdeja.jsx";
 import EventRegister from "./pages/EventRegister.jsx";
 import StartupRegister from "./pages/StartupRegister.jsx";
@@ -14,7 +16,7 @@ function App() {
             <div className="App">
                 <NavBar/>
                 <Routes>
-                    <Route path="/" element={<Home/>}> </Route>
+                    <Route path="/BarPage" element={<BarPage />}> </Route>
                     <Route path="/WebShop" element={<WebShop/>}> </Route>
                     <Route path="/ImamIdeja" element={<ImamIdeja/>}> </Route>
                     <Route path="/create-event" element={<EventRegister onSubmit={(data) => console.log("Event Created:", data)} />} />
