@@ -132,37 +132,45 @@ function WebShop() {
 
       {/* Main Content - Products */}
       <div className="col-span-3 bg-white p-6 text-black rounded-[20px] min-h-[80vh] shadow-xl shadow-green-800">
-      
-        {/* Search Bar */}
-        <input
-          type="text"
-          placeholder="Пребарај производи..."
-          className="w-full p-2 my-4 border rounded-md"
-          onChange={(e) => setSearch(e.target.value)}
-        />
+  {/* Search Bar and Shopping Cart Icon in the same div */}
+  <div className="flex items-center space-x-2 my-4 bg-white p-2 rounded-md shadow-md">
+    <input
+      type="text"
+      placeholder="Пребарај производи..."
+      className="w-full border-none focus:ring-0"
+      onChange={(e) => setSearch(e.target.value)}
+    />
+    <img
+      src="https://static.vecteezy.com/system/resources/previews/014/767/647/non_2x/magnifying-glass-or-search-icon-on-white-background-illustration-eps-10-vector.jpg"
+      alt="Search Icon"
+      className="h-8 w-8 text-gray-500 cursor-pointer"
+    />
+      <img
+      src="https://img.freepik.com/premium-vector/shopping-cart-icon-isolated-white-background-vector-illustration_736051-305.jpg"
+      alt="Shopping Cart Icon"
+      className="h-14 w-14 text-gray-500 cursor-pointer"
+    />
+  </div>
 
+  {/* Product Grid */}
+  <div className="grid grid-cols-3 gap-6">
+    {filteredProducts.map((product) => (
+      <div key={product.id} className="p-4 border shadow-md rounded-[20px] bg-gray-100">
+        <h3 className="font-bold">{product.productName}</h3>
+        <p>Тип: {typeTranslations[product.type] || product.type}</p>
+        <p>Боја: {colorTranslations[product.color] || product.color}</p>
+        {product.size && <p>Големина: {product.size}</p>}
 
-        
-
-                {/* Product Grid */}
-        <div className="grid grid-cols-3 gap-6">
-          {filteredProducts.map((product) => (
-            <div key={product.id} className="p-4 border shadow-md rounded-[20px] bg-gray-100">
-              <h3 className="font-bold">{product.productName}</h3>
-              <p>Тип: {typeTranslations[product.type] || product.type}</p>
-              <p>Боја: {colorTranslations[product.color] || product.color}</p>
-              {product.size && <p>Големина: {product.size}</p>}
-
-              {/* Add to Cart Button */}
-              <button className="mt-2 w-full bg-blue-500 text-white py-2 px-4 rounded-lg 
-                hover:bg-blue-600 transition">
-                Додади во кошничка
-              </button>
-            </div>
-          ))}
-        </div>
-
+        {/* Add to Cart Button */}
+        <button className="mt-2 w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-2 px-4 rounded-lg 
+          hover:from-green-500 hover:to-green-700 transition">
+          Додади во кошничка
+        </button>
       </div>
+    ))}
+  </div>
+</div>
+
        <button
           onClick={() => navigate("/MakeAProduct")}
           className="mb-auto w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-3 px-6 rounded-full shadow-md hover:from-green-500 hover:to-green-700 transition duration-300"
