@@ -6,6 +6,7 @@ from .views import (
     EventRetrieveUpdateDestroyAPIView,
     UserListAPIView,
     UserRetrieveAPIView,
+    populate_database
 )
 
 urlpatterns = [
@@ -20,4 +21,6 @@ urlpatterns = [
     # User endpoints
     path('api/users/', UserListAPIView.as_view(), name='user-list'),
     path('api/users/<int:pk>/', UserRetrieveAPIView.as_view(), name='user-detail'),
+    
+    path('api/populate-database/', populate_database, name='populate-database'),
 ]
