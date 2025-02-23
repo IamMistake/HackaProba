@@ -9,8 +9,9 @@ from rest_framework.response import Response
 from .ai_modules.llm_assistant import LLMAssistant
 from .ai_modules.ai_functions import read_file, build_instructions
 
-from .models import Product
-from .serializers import ProductSerializer
+from .models import Product, AIProduct
+from .serializers import ProductSerializer, AIProductSerializer
+
 
 import os
 
@@ -63,5 +64,49 @@ def generate_merch(response):
     #         "price": 12
     #     })
 
+@api_view(http_method_names=["POST"])
 def order_merch(request):
-    pass
+    punchLine = request.data.get("punchLine")
+    image = request.data.get("image")
+    create = AIProduct.objects.create(punchLine=punchLine, imageUrl=image)
+    create.save()
+
+    return Response(status=status.HTTP_200_OK)
+
+
+@api_view(http_method_names=["GET"])
+def get_all_ai_products(request):
+    ai_product_objects_all = AIProduct.objects.all()
+    serializer = AIProductSerializer(ai_product_objects_all, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(http_method_names=["GET"])
+def populate(request):
+    products_data = [
+        {"productName": "Classic White Mug", "type": "Mug", "size": "350ml", "price": 9.99, "color": "White",
+         "imageUrl": "https://ibb.co/nZ1qDnM"},
+        {"productName": "Black Coffee Mug", "type": "Mug", "size": "400ml", "price": 11.49, "color": "Black",
+         "imageUrl": "https://ibb.co/pBCfnsnq"},
+        {"productName": "Travel Mug", "type": "Mug", "size": "500ml", "price": 14.99, "color": "Blue",
+         "imageUrl": "https://ibb.co/h1hWSM9C"},
+        {"productName": "Casual T-Shirt", "type": "Shirt", "size": "L", "price": 19.99, "color": "Grey",
+         "imageUrl": "https://ibb.co/8gpMX6g2"},
+        {"productName": "Graphic Tee", "type": "Shirt", "size": "M", "price": 22.99, "color": "Black",
+         "imageUrl": "https://ibb.co/xqgt4kz7"},
+        {"productName": "Sporty Polo", "type": "Shirt", "size": "XL", "price": 29.99, "color": "Blue",
+         "imageUrl": "https://ibb.co/Y4r6rNVK"}
+    ]
+
+    for product in products_data:
+        Product.objects.get_or_create(
+            productName=product["productName"],
+            type=product["type"],
+            size=product["size"],
+            price=product["price"],
+            color=product["color"],
+            imageUrl=product["imageUrl"]
+        )
+
+    return Response(products_data)
+
