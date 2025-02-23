@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function StartupCard({data}) {
     return (
-    <Link to={`StartupIdea/${data.id}`} className="w-[20%] h-full bg-white rounded-[20px] shadow-xl shadow-orange-950 flex flex-col relative overflow-hidden">
+    <Link to={`StartupIdea/${data.id}`} className="w-[20%] h-full bg-white/45 rounded-[20px] shadow-xl shadow-orange-950 flex flex-col relative overflow-hidden">
       {/* Image */}
       <div className="w-full h-[50%]">
         <img
@@ -16,9 +16,9 @@ function StartupCard({data}) {
       {/* Text Content */}
       <div className="w-[80%] h-[20%] pl-3 pr-6 flex flex-col justify-between rounded-b-[20px] mt-1">
         {/* Title */}
-        <h3 className="text-md font-bold text-gray-900">{data.startupName}</h3>
+        <h3 className="text-md font-bold text-white">{data.startupName}</h3>
         {/* Description */}
-        <p className="text-sm text-gray-500">{data.description}</p>
+        <p className="text-sm text-gray-200">{data.description}</p>
 
         {/* Button */}
         <div className="absolute right-2 bottom-2 justify-end">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function NavBar() {
     return (
-    <nav className="flex items-center justify-between bg-gray-100 px-4 py-2 shadow-md pl-8 pr-8">
+    <nav className="flex items-center justify-between px-4 py-2 shadow-md pl-8 pr-8 w-[100%]">
       {/* Logo */}
       <div className="flex items-center">
         <a href="/">
@@ -24,7 +24,7 @@ function NavBar() {
       </div>
 
       {/* User Icon */}
-      <div className="flex items-center">
+      <div className="flex items-center ">
         <button className="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-md">
           <FaUser className="text-gray-600" />
           {/*<span className="ml-1 font-bold"></span>*/}

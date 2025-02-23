@@ -50,7 +50,7 @@ function StartupsCards() {
     }, []);
 
     return (
-        <div className="flex gap-[5%] w-full h-full ml-7">
+        <div className="flex gap-[5%] w-full h-full ml-7 ">
             {startups.map(startup => <StartupCard data={startup} key={startup.id}/>)}
         </div>
     )

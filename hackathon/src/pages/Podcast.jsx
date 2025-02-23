@@ -11,11 +11,11 @@ const podcasts = [
 
 const Podcast = () => {
   return (
-    <div className="min-h-screen bg-white text-black p-6">
+    <div className="min-h-screen text-white p-6">
       <h1 className="text-3xl font-bold mb-6">Подкасти</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {podcasts.map((podcast) => (
-          <div key={podcast.id} className="bg-white p-4 rounded-xl shadow-xl shadow-blue-950">
+          <div key={podcast.id} className="bg-white/70 p-4 rounded-xl shadow-xl shadow-blue-950">
             <iframe
               className="w-full h-40 rounded-md"
               src={`https://www.youtube.com/embed/${podcast.thumbnail}`}
@@ -24,8 +24,8 @@ const Podcast = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
-            <h2 className="text-xl font-semibold mt-4">{podcast.title}</h2>
-            <p className="text-gray-400 text-sm mt-2">{podcast.desc}</p>
+            <h2 className="text-xl text-black font-semibold mt-4">{podcast.title}</h2>
+            <p className="text-gray-800 text-sm mt-2">{podcast.desc}</p>
           </div>
         ))}
       </div>
