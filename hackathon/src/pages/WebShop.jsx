@@ -18,6 +18,21 @@ function WebShop() {
   const [selectedColors, setSelectedColors] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]); 
 
+
+      {/* Define translations */}
+    const typeTranslations = {
+      shirt: "Маица",
+      mug: "Чаша"
+    };
+
+    const colorTranslations = {
+      red: "Црвена",
+      blue: "Сина",
+      green: "Зелена",
+      black: "Црна",
+      white: "Бела"
+    };
+
   // Toggle function for checkboxes
   const handleCheckboxChange = (value, setter, selectedValues) => {
     if (selectedValues.includes(value)) {
@@ -42,51 +57,61 @@ function WebShop() {
       <div className="col-span-1 bg-white p-4 text-black overflow-y-auto hide-scrollbar 
   rounded-[20px] shadow-xl shadow-green-800 flex-grow mt-20">
 
-        <h2 className="font-bold text-lg mb-2">Filters</h2>
+        <h2 className="font-bold text-lg mb-2">Филтери</h2>
 
         {/* Type Filter */}
         <div>
-          <label className="block font-bold">Type:</label>
-          {["all", "shirt", "mug"].map((type) => (
-            <div key={type}>
-              <input
-                type="radio"
-                id={type}
-                name="type"
-                value={type}
-                checked={filterType === type}
-                onChange={() => setFilterType(type)}
-                className="mr-2"
-              />
-              <label htmlFor={type} className="capitalize">{type}</label>
-            </div>
-          ))}
+        <label className="block font-bold">Тип:</label>
+        {[
+          { key: "all", label: "Сите" },
+          { key: "shirt", label: "Маица" },
+          { key: "mug", label: "Чаша" }
+        ].map(({ key, label }) => (
+          <div key={key}>
+            <input
+              type="radio"
+              id={key}
+              name="type"
+              value={key}
+              checked={filterType === key}
+              onChange={() => setFilterType(key)}
+              className="mr-2"
+            />
+            <label htmlFor={key} className="capitalize">{label}</label>
+          </div>
+        ))}
         </div>
 
         {/* Color Filter */}
-        {filterType !== "all" && (
-          <div className="mt-4">
-            <label className="block font-bold">Color:</label>
-            {["red", "blue", "green", "black", "white"].map((color) => (
-              <div key={color}>
-                <input
-                  type="checkbox"
-                  id={color}
-                  value={color}
-                  checked={selectedColors.includes(color)}
-                  onChange={() => handleCheckboxChange(color, setSelectedColors, selectedColors)}
-                  className="mr-2"
-                />
-                <label htmlFor={color} className="capitalize">{color}</label>
-              </div>
-            ))}
-          </div>
-        )}
+                  {filterType !== "all" && (
+            <div className="mt-4">
+              <label className="block font-bold">Боја:</label>
+              {[
+                { key: "red", label: "Црвена" },
+                { key: "blue", label: "Сина" },
+                { key: "green", label: "Зелена" },
+                { key: "black", label: "Црна" },
+                { key: "white", label: "Бела" }
+              ].map(({ key, label }) => (
+                <div key={key}>
+                  <input
+                    type="checkbox"
+                    id={key}
+                    value={key}
+                    checked={selectedColors.includes(key)}
+                    onChange={() => handleCheckboxChange(key, setSelectedColors, selectedColors)}
+                    className="mr-2"
+                  />
+                  <label htmlFor={key} className="capitalize">{label}</label>
+                </div>
+              ))}
+            </div>
+          )}
 
         {/* Size Filter (Only for Shirts) */}
         {filterType === "shirt" && (
           <div className="mt-4">
-            <label className="block font-bold">Size:</label>
+            <label className="block font-bold">Големина:</label>
             {["S", "M", "L"].map((size) => (
               <div key={size}>
                 <input
@@ -111,24 +136,27 @@ function WebShop() {
         {/* Search Bar */}
         <input
           type="text"
-          placeholder="Search products..."
+          placeholder="Пребарај производи..."
           className="w-full p-2 my-4 border rounded-md"
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        {/* Product Grid */}
+
+        
+
+                {/* Product Grid */}
         <div className="grid grid-cols-3 gap-6">
           {filteredProducts.map((product) => (
             <div key={product.id} className="p-4 border shadow-md rounded-[20px] bg-gray-100">
               <h3 className="font-bold">{product.productName}</h3>
-              <p>Type: {product.type}</p>
-              <p>Color: {product.color}</p>
-              {product.size && <p>Size: {product.size}</p>}
+              <p>Тип: {typeTranslations[product.type] || product.type}</p>
+              <p>Боја: {colorTranslations[product.color] || product.color}</p>
+              {product.size && <p>Големина: {product.size}</p>}
 
               {/* Add to Cart Button */}
               <button className="mt-2 w-full bg-blue-500 text-white py-2 px-4 rounded-lg 
                 hover:bg-blue-600 transition">
-                Add to Cart
+                Додади во кошничка
               </button>
             </div>
           ))}
@@ -137,7 +165,7 @@ function WebShop() {
       </div>
        <button
           onClick={() => navigate("/MakeAProduct")}
-          className="mb-auto bg-blue-500 text-white p-2 rounded-md shadow-md hover:bg-blue-700"
+          className="mb-auto w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-3 px-6 rounded-full shadow-md hover:from-green-500 hover:to-green-700 transition duration-300"
         >
           Креирај свој продукт  
         </button>
