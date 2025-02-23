@@ -5,7 +5,7 @@ import StartupsCards from "../components/StartupsCards.jsx";
 
 function Home() {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 m-4 mt-1 h-screen sm:grid-rows-[51vh_35vh] mt-2">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 m-4 mt-1 h-[80%] sm:grid-rows-[51vh_35vh] mt-2">
             <div className="col-span-1 bg-white-900 p-4 text-black
     overflow-y-auto hide-scrollbar rounded-[20px] shadow-xl shadow-yellow-950">
                 <CocktailSection/>
