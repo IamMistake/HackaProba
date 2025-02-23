@@ -1,8 +1,9 @@
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function StartupCard({data}) {
     return (
-    <div className="w-[20%] h-full bg-white rounded-[20px] shadow-xl shadow-orange-950 flex flex-col relative overflow-hidden">
+    <Link to={`StartupIdea/${data.id}`} className="w-[20%] h-full bg-white rounded-[20px] shadow-xl shadow-orange-950 flex flex-col relative overflow-hidden">
       {/* Image */}
       <div className="w-full h-[50%]">
         <img
@@ -26,7 +27,7 @@ function StartupCard({data}) {
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

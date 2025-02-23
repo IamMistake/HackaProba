@@ -1,22 +1,27 @@
 import NavBar from "../components/NavBar.jsx";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const products = [
-  { id: 1, productName: "Red Shirt", type: "shirt", color: "red", size: "M" },
-  { id: 2, productName: "Blue Shirt", type: "shirt", color: "blue", size: "L" },
-  { id: 3, productName: "Green Shirt", type: "shirt", color: "green", size: "S" },
-  { id: 4, productName: "Black Mug", type: "mug", color: "black" },
-  { id: 5, productName: "White Mug", type: "mug", color: "white" },
-  { id: 6, productName: "Red Mug", type: "mug", color: "red" },
-];
+// const products = [
+//   { id: 1, productName: "Red Shirt", type: "shirt", color: "red", size: "M" }
+// ];
 
 function WebShop() {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
+  const [products, setProducts] = useState([
+  { id: 1, productName: "Red Shirt", type: "shirt", color: "red", size: "M", imageUrl: "https://ibb.co/nZ1qDnM" }
+]);
   const [filterType, setFilterType] = useState("all");
   const [selectedColors, setSelectedColors] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState([]); 
+  const [selectedSizes, setSelectedSizes] = useState([]);
+
+  useEffect(() => {
+        fetch("http://localhost:8000/api/merch/products")
+            .then(response => response.json())
+            .then(data => setProducts(data))
+            .catch(error => console.error("Error fetching bot response:", error));
+    }, []);
 
 
       {/* Define translations */}
@@ -36,9 +41,9 @@ function WebShop() {
   // Toggle function for checkboxes
   const handleCheckboxChange = (value, setter, selectedValues) => {
     if (selectedValues.includes(value)) {
-      setter(selectedValues.filter((item) => item !== value)); 
+      setter(selectedValues.filter((item) => item !== value));
     } else {
-      setter([...selectedValues, value]); 
+      setter([...selectedValues, value]);
     }
   };
 
@@ -52,9 +57,9 @@ function WebShop() {
   });
   return (
     <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 m-4 mt-1 h-screen sm:grid-rows-[51vh_35vh]">
-      
+
       {/* Sidebar - Filters */}
-      <div className="col-span-1 bg-white p-4 text-black overflow-y-auto hide-scrollbar 
+      <div className="col-span-1 bg-white p-4 text-black overflow-y-auto hide-scrollbar
   rounded-[20px] shadow-xl shadow-green-800 flex-grow mt-20">
 
         <h2 className="font-bold text-lg mb-2">Филтери</h2>
@@ -64,8 +69,8 @@ function WebShop() {
         <label className="block font-bold">Тип:</label>
         {[
           { key: "all", label: "Сите" },
-          { key: "shirt", label: "Маица" },
-          { key: "mug", label: "Чаша" }
+          { key: "Shirt", label: "Маица" },
+          { key: "Mug", label: "Чаша" }
         ].map(({ key, label }) => (
           <div key={key}>
             <input
@@ -87,11 +92,11 @@ function WebShop() {
             <div className="mt-4">
               <label className="block font-bold">Боја:</label>
               {[
-                { key: "red", label: "Црвена" },
-                { key: "blue", label: "Сина" },
-                { key: "green", label: "Зелена" },
-                { key: "black", label: "Црна" },
-                { key: "white", label: "Бела" }
+                { key: "Red", label: "Црвена" },
+                { key: "Blue", label: "Сина" },
+                { key: "Green", label: "Зелена" },
+                { key: "Black", label: "Црна" },
+                { key: "White", label: "Бела" }
               ].map(({ key, label }) => (
                 <div key={key}>
                   <input
@@ -155,27 +160,33 @@ function WebShop() {
   {/* Product Grid */}
   <div className="grid grid-cols-3 gap-6">
     {filteredProducts.map((product) => (
-      <div key={product.id} className="p-4 border shadow-md rounded-[20px] bg-gray-100">
-        <h3 className="font-bold">{product.productName}</h3>
-        <p>Тип: {typeTranslations[product.type] || product.type}</p>
-        <p>Боја: {colorTranslations[product.color] || product.color}</p>
-        {product.size && <p>Големина: {product.size}</p>}
+        <div key={product.id} className="relative p-4 border shadow-md rounded-[20px] bg-gray-100">
+            {/* Image in the top-right corner */}
+            <img src={product.imageUrl + "/Screenshot-1.jpg"} alt={product.productName}
+                 className="absolute top-2 right-2 w-26 h-26 object-cover rounded-full"/>
 
-        {/* Add to Cart Button */}
-        <button className="mt-2 w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-2 px-4 rounded-lg 
-          hover:from-green-500 hover:to-green-700 transition">
-          Додади во кошничка
-        </button>
-      </div>
+            <h3 className="font-bold">{product.productName}</h3>
+            <p>Тип: {typeTranslations[product.type] || product.type}</p>
+            <p>Боја: {colorTranslations[product.color] || product.color}</p>
+            {product.size && <p>Големина: {product.size}</p>}
+
+            {/* Add to Cart Button */}
+            <button className="mt-2 w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-2 px-4 rounded-lg
+    hover:from-green-500 hover:to-green-700 transition">
+                Додади во кошничка
+            </button>
+        </div>
+
+
     ))}
   </div>
-</div>
+      </div>
 
-       <button
-          onClick={() => navigate("/MakeAProduct")}
-          className="mb-auto w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-3 px-6 rounded-full shadow-md hover:from-green-500 hover:to-green-700 transition duration-300"
+        <button
+            onClick={() => navigate("/MakeAProduct")}
+            className="mb-auto w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-3 px-6 rounded-full shadow-md hover:from-green-500 hover:to-green-700 transition duration-300"
         >
-          Креирај свој продукт  
+            Креирај свој продукт
         </button>
     </div>
   );

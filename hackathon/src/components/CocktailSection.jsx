@@ -3,24 +3,95 @@ import {useState, useEffect} from "react";
 
 function CocktailSection() {
     const [coctails, setCoctails] = useState([
-        {id: 1, title: "Vikings", url: "https://plus.unsplash.com/premium_photo-1698238183673-66642d292c03?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-        {id: 2, title: "La casa de papel", url: "https://images.unsplash.com/photo-1622126812734-35a1d6c46f22?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-        {id: 3, title: "The 100", url: "https://ntvb.tmsimg.com/assets/p18078200_b_h8_ae.jpg?w=1280&h=720"},
-        {id: 4, title: "Dark", url: "https://images.unsplash.com/photo-1595495529106-adb18dfe16a8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-        {id: 5, title: "Spider-Man", url: "https://wallpaperaccess.com/full/8652624.jpg"}
-    ])
+    {
+        "drinkName": "Fiery Sunrise",
+        "type": "Cocktail",
+        "ingredients": [
+            {
+                "name": "Tequila",
+                "quantity": 50.0,
+                "metric": "ml",
+                "drink": 1
+            },
+            {
+                "name": "Orange Juice",
+                "quantity": 100.0,
+                "metric": "ml",
+                "drink": 1
+            },
+            {
+                "name": "Lime Juice",
+                "quantity": 15.0,
+                "metric": "ml",
+                "drink": 1
+            },
+            {
+                "name": "Chili Powder",
+                "quantity": 1.0,
+                "metric": "pinch",
+                "drink": 1
+            }
+        ],
+        "instructions": "In a shaker, combine tequila, orange juice, lime juice, and a pinch of chili powder. Fill with ice and shake vigorously. Strain into a glass filled with ice. Garnish with a lime wheel.",
+        "price": 12.0
+    },
+    {
+        "drinkName": "Spicy Mint Mojito",
+        "type": "Cocktail",
+        "ingredients": [
+            {
+                "name": "Rum",
+                "quantity": 50.0,
+                "metric": "ml",
+                "drink": 2
+            },
+            {
+                "name": "Lime Juice",
+                "quantity": 25.0,
+                "metric": "ml",
+                "drink": 2
+            },
+            {
+                "name": "Orange Juice",
+                "quantity": 30.0,
+                "metric": "ml",
+                "drink": 2
+            },
+            {
+                "name": "Mint Leaves",
+                "quantity": 10.0,
+                "metric": "leaves",
+                "drink": 2
+            },
+            {
+                "name": "Chili Powder",
+                "quantity": 1.0,
+                "metric": "pinch",
+                "drink": 2
+            },
+            {
+                "name": "Soda Water",
+                "quantity": 100.0,
+                "metric": "ml",
+                "drink": 2
+            }
+        ],
+        "instructions": "Muddle mint leaves in a glass with lime juice and chili powder. Add rum and orange juice. Fill the glass with ice and top it off with soda water. Stir gently and garnish with a mint sprig.",
+        "price": 11.0
+    }
+])
 
-    // useEffect(() => {
-    //     fetch("http://localhost:8000/api/startup/")
-    //         .then(response => response.json())
-    //         .then(data => setCoctails(data.message))
-    //         .catch(error => console.error("Error fetching bot response:", error));
-    // }, []);
+    useEffect(() => {
+        fetch("http://localhost:8000/api/aibartender/drinks")
+            .then(response => response.json())
+            .then(data => setCoctails(data))
+            .catch(error => console.error("Error fetching bot response:", error));
+    }, []);
 
     return (
         <div className="newest-movies ">
             <h3 className="mb-3 heading-text font-bold">🔥 Последно порачани коктели </h3>
-            {coctails.map(movie => <CoctailCard movie={movie} key={movie.id}/>)}
+            {coctails.map(cocktail => <CoctailCard cocktail={cocktail} key={cocktail.drinkName}/>)}
         </div>
     )
 }

@@ -24,8 +24,11 @@ ai_bartender = LLMAssistant(api_key=read_file(
 
 @api_view(http_method_names=["POST"])
 def generate_drink(request):
+    print("RESUEST DATA HEREEEEEEEEEEEEEEEEEEEEEEEEe", request.data)
     prompt = request.data
     output = ai_bartender.consult_once(prompt, structured=True)
+    print("RESUEST DATA OUTPUT", output)
+
     output = output.replace("\n", "")
     structured_output = json.loads(output)
     return Response(structured_output)
@@ -97,11 +100,9 @@ def populate(request):
     for drink_data in data["drinks"]:
         created = AIDrink.objects.create(
             drinkName=drink_data["drinkName"],
-            defaults={
-                "type": drink_data["type"],
-                "price": drink_data["price"],
-                "instructions": drink_data["instructions"]
-            }
+            type=drink_data["type"],
+            price=drink_data["price"],
+            instructions=drink_data["instructions"],
         )
 
         for ingredient_data in drink_data["ingredients"]:

@@ -3,19 +3,68 @@ import {useState, useEffect} from "react";
 
 function Eshop() {
     const [shopComponents, setShopComponents] = useState([
-        {id: 5, title: "Spider-Man", url: "https://wallpaperaccess.com/full/8652624.jpg", length: "3h 30mins"},
-        {id: 4, title: "Dark", url: "https://images.unsplash.com/photo-1595495529106-adb18dfe16a8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", length: "2h 30mins"},
-        {id: 3, title: "The 100", url: "https://ntvb.tmsimg.com/assets/p18078200_b_h8_ae.jpg?w=1280&h=720", length: "4h"},
-        {id: 1, title: "Vikings", url: "https://plus.unsplash.com/premium_photo-1698238183673-66642d292c03?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", length: "3h"},
-        {id: 2, title: "La casa de papel", url: "https://images.unsplash.com/photo-1622126812734-35a1d6c46f22?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", length: "3 hours and 20 mins"},
-    ]);
+    {
+        "id": 1,
+        "productName": "Classic White Mug",
+        "type": "Mug",
+        "size": "350ml",
+        "price": "9.99",
+        "color": "White",
+        "imageUrl": "https://i.ibb.co/4g9THftJ/Screenshot-3.jpg"
+    },
+    {
+        "id": 2,
+        "productName": "Black Coffee Mug",
+        "type": "Mug",
+        "size": "400ml",
+        "price": "11.49",
+        "color": "Black",
+        "imageUrl": "https://i.ibb.co/FLG5nfnp/Screenshot-2.jpg"
+    },
+    {
+        "id": 3,
+        "productName": "Travel Mug",
+        "type": "Mug",
+        "size": "500ml",
+        "price": "14.99",
+        "color": "Blue",
+        "imageUrl": "https://i.ibb.co/tk2wbxp/Screenshot-1.jpg"
+    },
+    {
+        "id": 4,
+        "productName": "Casual T-Shirt",
+        "type": "Shirt",
+        "size": "L",
+        "price": "19.99",
+        "color": "Grey",
+        "imageUrl": "https://i.ibb.co/LDGMG0sq/Screenshot-6.jpg"
+    },
+    {
+        "id": 5,
+        "productName": "Graphic Tee",
+        "type": "Shirt",
+        "size": "M",
+        "price": "22.99",
+        "color": "Black",
+        "imageUrl": "https://i.ibb.co/s91dBfsV/Screenshot-5.jpg"
+    },
+    {
+        "id": 6,
+        "productName": "Sporty Polo",
+        "type": "Shirt",
+        "size": "XL",
+        "price": "29.99",
+        "color": "Blue",
+        "imageUrl": "https://i.ibb.co/jk2hHgkG/Screenshot-4.jpg"
+    }
+]);
 
-    // useEffect(() => {
-    //     fetch("http://localhost:8000/api/startup/")
-    //         .then(response => response.json())
-    //         .then(data => setShopComponents(data.message))
-    //         .catch(error => console.error("Error fetching bot response:", error));
-    // }, []);
+    useEffect(() => {
+        fetch("http://localhost:8000/api/merch/aiproducts")
+            .then(response => response.json())
+            .then(data => setShopComponents(data))
+            .catch(error => console.error("Error fetching bot response:", error));
+    }, []);
 
     return (
         <div className="fav-movies">
