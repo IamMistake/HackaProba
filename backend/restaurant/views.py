@@ -15,16 +15,11 @@ from .serializers import AIDrinkSerializer, IngredientSerializer
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-API_KEY_PATH = os.path.join(BASE_DIR, "restaurant", "ai_modules", "api_key.txt")
+API_KEY_PATH = os.path.join(BASE_DIR, "common", "api_key.txt")
 
 ai_bartender = LLMAssistant(api_key=read_file(
     full_path=API_KEY_PATH)
     , starting_instructions=build_instructions(LLMAssistant.BERTender_INSTRUCTIONS_DIR))
-
-
-class HelloRestaurant(APIView):
-    def get(self, request):
-        return Response({"message": "Welcome to the Viktor API!"})
 
 
 @api_view(http_method_names=["POST"])

@@ -15,7 +15,7 @@ from .serializers import ProductSerializer
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-API_KEY_PATH = os.path.join(BASE_DIR, "merch", "ai_modules", "api_key.txt")
+API_KEY_PATH = os.path.join(BASE_DIR, "common", "api_key.txt")
 
 ai_merch = LLMAssistant(api_key=read_file(
     full_path=API_KEY_PATH)
