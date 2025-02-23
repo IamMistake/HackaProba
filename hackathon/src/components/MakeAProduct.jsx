@@ -7,9 +7,23 @@ function MakeAProduct() {
   const [designOption, setDesignOption] = useState("AI");
   const [productType, setProductType] = useState("shirt");
   const [showPreviews, setShowPreviews] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(""); // State for modal image
 
   const handleSubmit = () => {
     setShowPreviews(true);
+  };
+
+  const handleAddToCart = (previewNumber) => {
+    alert(`Product ${previewNumber} added to cart!`);
+    // Implement your cart logic here
+  };
+
+  const handleImageClick = (imageUrl) => {
+    setSelectedImage(imageUrl); // Set the clicked image to show in the modal
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(""); // Close the modal by clearing the selected image
   };
 
   return (
@@ -42,7 +56,7 @@ function MakeAProduct() {
             </span>
           </p>
 
-              {/* Product Type Selection */}
+          {/* Product Type Selection */}
           <fieldset className="space-y-3">
             <legend className="text-gray-700 font-medium">Одбери производ:</legend>
 
@@ -85,28 +99,70 @@ function MakeAProduct() {
             ))}
           </fieldset>
 
-
           <button
             onClick={handleSubmit}
             className="mt-4 w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
           >
-            Submit
+            Генерирај
           </button>
 
           {showPreviews && (
             <div className="mt-8 grid grid-cols-2 gap-4">
+              {/* Preview 1 */}
               <div className="p-4 border shadow-md rounded-[20px] bg-gray-100">
                 <h3 className="font-bold">Preview 1</h3>
-                <img src="https://via.placeholder.com/150" alt="Preview 1" />
+                <img
+                  src="https://via.placeholder.com/150"
+                  alt="Preview 1"
+                  onClick={() => handleImageClick("https://via.placeholder.com/150")}
+                  className="cursor-pointer"
+                />
+                <button
+                  onClick={() => handleAddToCart(1)}
+                  className="mt-4 w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
+                >
+                  Додај во кошничка
+                </button>
               </div>
+
+              {/* Preview 2 */}
               <div className="p-4 border shadow-md rounded-[20px] bg-gray-100">
                 <h3 className="font-bold">Preview 2</h3>
-                <img src="https://via.placeholder.com/150" alt="Preview 2" />
+                <img
+                  src="https://via.placeholder.com/150"
+                  alt="Preview 2"
+                  onClick={() => handleImageClick("https://via.placeholder.com/150")}
+                  className="cursor-pointer"
+                />
+                <button
+                  onClick={() => handleAddToCart(2)}
+                  className="mt-4 w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition"
+                >
+                  Додај во кошничка
+                </button>
               </div>
             </div>
           )}
         </div>
       </div>
+
+      {/* Modal for image preview */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+          onClick={handleCloseModal}
+        >
+          <div className="relative bg-white p-4 rounded-lg max-w-3xl">
+            <span
+              onClick={handleCloseModal}
+              className="absolute top-2 right-2 text-xl font-bold cursor-pointer text-red-500"
+            >
+              ×
+            </span>
+            <img src={selectedImage} alt="Full-size preview" className="max-w-full h-auto" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
