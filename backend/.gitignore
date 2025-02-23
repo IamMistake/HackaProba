@@ -10,5 +10,5 @@ __pycache__/
 venv/
 
 restaurant/ai_modules/api_key.txt
-merch/ai_modules/api_key.txt
+common/api_key.txt
 
