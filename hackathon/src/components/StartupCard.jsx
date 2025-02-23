@@ -4,7 +4,7 @@ function StartupCard({data}) {
     return (
     <div className="w-[20%] h-full bg-white rounded-[20px] shadow-xl shadow-orange-950 flex flex-col relative overflow-hidden">
       {/* Image */}
-      <div className="w-full h-[60%]">
+      <div className="w-full h-[50%]">
         <img
           src={data.image}
           alt={data.startupName}
@@ -13,9 +13,9 @@ function StartupCard({data}) {
       </div>
 
       {/* Text Content */}
-      <div className="w-[80%] h-[20%] pl-3 pr-6 flex flex-col justify-between rounded-b-[20px]">
+      <div className="w-[80%] h-[20%] pl-3 pr-6 flex flex-col justify-between rounded-b-[20px] mt-1">
         {/* Title */}
-        <h3 className="text-lg font-bold text-gray-900">{data.startupName}</h3>
+        <h3 className="text-md font-bold text-gray-900">{data.startupName}</h3>
         {/* Description */}
         <p className="text-sm text-gray-500">{data.description}</p>
 
