@@ -154,8 +154,8 @@ function WebShop() {
               {product.size && <p>Големина: {product.size}</p>}
 
               {/* Add to Cart Button */}
-              <button className="mt-2 w-full bg-blue-500 text-white py-2 px-4 rounded-lg 
-                hover:bg-blue-600 transition">
+              <button className="mt-2 w-full bg-gradient-to-r from-green-400 to-green-600 text-white py-2 px-4 rounded-lg 
+                hover:from-green-500 hover:to-green-700 transition">
                 Додади во кошничка
               </button>
             </div>
