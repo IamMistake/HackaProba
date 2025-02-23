@@ -75,8 +75,9 @@ const BarPage = () => {
     return suggestedCocktails;
   };
 
-  const handleQuizSubmit = (jsonAnswers) => {
-    const answers = JSON.parse(jsonAnswers);
+  const handleQuizSubmit = async (jsonAnswers) => {
+    const answers = JSON.parse(JSON.stringify(jsonAnswers));
+    console.log(answers)
     const isEmpty =
       !answers.personality.length &&
       !answers.feelings.length &&
@@ -90,9 +91,29 @@ const BarPage = () => {
       setRecommendedDrinks(null);
     } else {
       setErrorMessage(""); // Clear any previous error messages
-      const suggestions = getCocktailSuggestions(answers);
-      setRecommendedDrinks(suggestions);
-    }
+      // const suggestions = getCocktailSuggestions(answers);
+      try {
+        // Send the POST request
+        const response = await fetch('http://localhost:8000/api/aibartender/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(answers),
+        });
+    
+        // Handle the response
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Response from server:', data);
+          setRecommendedDrinks(data); // ova raboti
+        } else {
+          console.error('Failed to send request:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Error occurred while sending request:', error);
+      }
+    };
   };
 
   return (
