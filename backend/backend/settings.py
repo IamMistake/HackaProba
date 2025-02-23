@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'restaurant',
+    'merch',
     'rest_framework',
     'corsheaders',
     'imamideja'
