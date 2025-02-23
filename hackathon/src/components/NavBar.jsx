@@ -16,7 +16,7 @@ function NavBar() {
       {/* Navigation Links */}
       <div className="flex items-center bg-white rounded-full shadow-md px-6 py-2 space-x-10">
         <Link to="/" className="text-black font-bold">ИмамИдеја</Link>
-        <Link to="/" className="text-black font-bold">Среќа-бар</Link>
+        <Link to="/BarPage" className="text-black font-bold">Среќа-бар</Link>
         <Link to="/WebShop" className="text-black font-bold">Е-продавница</Link>
       </div>
 
