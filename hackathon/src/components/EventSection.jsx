@@ -1,5 +1,6 @@
 import EventCard from "./EventCard.jsx";
 import {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 
 function EventSection() {
     const [events, setEvents] = useState([{
@@ -10,6 +11,8 @@ function EventSection() {
         "description": "predavanje za mrza",
         "date": "2025-02-25"
     }]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch("http://localhost:8000/imamideja/api/events/")
@@ -47,13 +50,13 @@ function EventSection() {
 
             {/* Bottom Left Buttons (Play and Download) */}
             <div className="sticky bottom-0 left-0 p-6 flex gap-4 z-10">
-                <button
+                <button onClick={() => navigate(`/EventInfo/${events[currentIndex].id}`)}
                     className="flex items-center gap-2 bg-gray-500 bg-opacity-90 text-white px-4 py-2 rounded-full hover:bg-opacity-100 transition-all">
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M8 5v14l11-7z"/>
                     </svg>
-                    <span>Watch</span>
+                    <span>Инфо</span>
                 </button>
                 <button
                     className="flex items-center gap-2 bg-gray-500 bg-opacity-90 text-white px-4 py-2 rounded-full hover:bg-opacity-100 transition-all">
@@ -61,7 +64,7 @@ function EventSection() {
                          xmlns="http://www.w3.org/2000/svg">
                         <path d="M19 12v7H5v-7H3v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2zM12 2L7 7h4v8h2V7h4l-5-5z"/>
                     </svg>
-                    <span>Download</span>
+                    <span>Пријави</span>
                 </button>
 
                 <button onClick={prevMovie}

@@ -15,7 +15,7 @@ const Question = ({ category, options, value, onChange }) => {
             <input
               type="checkbox"
               value={option}
-              checked={index === 0 || value.includes(option)}
+              checked={value.includes(option)}
               onChange={() => onChange(category, option)}
               className="mr-2"
             />

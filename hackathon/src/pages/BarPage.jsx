@@ -92,6 +92,7 @@ const BarPage = () => {
     } else {
       setErrorMessage(""); // Clear any previous error messages
       // const suggestions = getCocktailSuggestions(answers);
+      console.log(answers)
       try {
         // Send the POST request
         const response = await fetch('http://localhost:8000/api/aibartender/generate', {
@@ -106,7 +107,7 @@ const BarPage = () => {
         if (response.ok) {
           const data = await response.json();
           console.log('Response from server:', data);
-          setRecommendedDrinks(data); // ova raboti
+          setRecommendedDrinks(data.drinks); // ova raboti
         } else {
           console.error('Failed to send request:', response.status, response.statusText);
         }

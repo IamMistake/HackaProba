@@ -1,10 +1,11 @@
-from rest_framework import generics,status
+from rest_framework import generics, status
 from .models import StartupIdea, Event
 from .serializers import StartupIdeaSerializer, EventSerializer
 from .models import User
 from .serializers import UserSerializer
 from .models import User, StartupIdea, Event
 from rest_framework.response import Response
+
 
 # Startup Idea Endpoints
 
@@ -17,6 +18,7 @@ class StartupIdeaListCreateAPIView(generics.ListCreateAPIView):
     queryset = StartupIdea.objects.all()
     serializer_class = StartupIdeaSerializer
 
+
 class StartupIdeaRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     GET: Retrieve details for a specific startup idea.
@@ -25,6 +27,7 @@ class StartupIdeaRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIV
     """
     queryset = StartupIdea.objects.all()
     serializer_class = StartupIdeaSerializer
+
 
 # Event Endpoints
 
@@ -36,6 +39,7 @@ class EventListCreateAPIView(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
+
 class EventRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     GET: Retrieve details for a specific event.
@@ -44,7 +48,7 @@ class EventRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    
+
 
 class UserListAPIView(generics.ListAPIView):
     """
@@ -53,13 +57,14 @@ class UserListAPIView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+
 class UserRetrieveAPIView(generics.RetrieveAPIView):
     """
     GET: Retrieve details for a specific user.
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    
+
 
 def populate_database(request):
     # Populate Users
@@ -198,4 +203,4 @@ def populate_database(request):
             }
         )
 
-    return Response(status=status.HTTP_200_OK) 
+    return Response(status=status.HTTP_200_OK)
