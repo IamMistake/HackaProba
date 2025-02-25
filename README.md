@@ -1,48 +1,43 @@
-# Django (backend) with SQLite (database) & React (frontend)
+# NeSePlasiNeBytam
 
-This is a docker environment to run and just start programming.\
-Also very minimal chat app to see that backend and frontend connect.
+This project is our hackathon solution for rebranding the website [Srekja.mk](https://srekja.mk). The web application is built using:
 
-## Setting up
+- **Frontend**: React  
+- **Backend**: Django  
+- **Database**: SQLite  
+- **Containerization**: Docker Compose  
 
-First pull this repository:
+## Prerequisites
+- **Docker & Docker Compose** installed on your system  
+- **OpenAI API Key** (**Required**)  
 
-```bash
-git pull https://github.com/IamMistake/HackaProba.git
-```
-To run the docker container you need to open/install Docker Desktop.\
-Than open the project in PyCharm or preferred IDE and in the root directory open the terminal and write:
+## Setup & Run
 
-```bash
-docker-compose up --build
-```
-And this should make 2 images and run them in 1 container.
-- hackproba-frontend
-- hackproba-backend
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-repo.git
+   cd your-repo
+   ```
 
-## Now open the app in Browser ([localhost:5173](http://localhost:5173/))
-Everything should work perfectly. You can also test it. :)
+2. Create a folder inside `backend` named `common` and add your API key:
+   ```sh
+   mkdir -p backend/common
+   echo "your-openai-api-key" > backend/common/api_key.txt
+   ```
 
-## How to program with this
-- ### For Frontend
-When the docker is up you can normally make changes and you will see it instantly by refreshing the browser.\
-The app is hosted on port 5173.
+3. Start the application using Docker Compose:
+   ```sh
+   docker-compose up --build
+   ```
 
-- ### For Backend
-When the docker is up you can normally make changes and it should detect them and refresh the server, but if that doesn't happen just run this command in another terminal:
-```bash
-docker-compose restart backend
-```
-**If installing dependencies you MUST add them to the *requirements.txt* file.**\
-\
-The app is hosted on port 8000.\
-Also I suggest using [**Postman**](https://www.postman.com/downloads/) to generate Http requests.
+4. Once everything is running, open the web application in your browser at:
+   ```
+   http://localhost:5173
+   ```
 
-- ### About the Database
-The database is in *backend/db.sqlite3*\
-Also I have added it to *.gitignore* so any changes to it won't show to the others (if you don't want that you need to remove it from the *.gitignore* file).
+## Notes
+- The frontend runs on port **5173**  
+- The backend runs on port **8000**  
+- The SQLite database is stored within the `backend` container  
 
-To see it my suggestion is to download [**DB Browser for SQLite**](https://sqlitebrowser.org).\
-After installing, to see the database open the *db.sqlite3* file thru the application.
-
-# Have fun ʕ•́ᴥ•̀ʔっ♡
+Enjoy! 🚀
