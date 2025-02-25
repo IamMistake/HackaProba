@@ -15,8 +15,8 @@ This project is our hackathon solution for rebranding the website [Srekja.mk](ht
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo.git
-   cd your-repo
+   git clone https://github.com/IamMistake/Rebranding_SrekjaMk
+   cd Rebranding_SrekjaMk
    ```
 
 2. Create a folder inside `backend` named `common` and add your API key:
